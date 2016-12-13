@@ -1,4 +1,6 @@
 import math
+from decimal import *
+
 
 filename = 'input.txt'
 
@@ -10,10 +12,9 @@ def main():
 			totalf.append(line.strip())
 	for i in range(len(totalf)):
 		totalf[i] = totalf[i][:1] + '.' + totalf[i][1:]
-		fl.append(float(totalf[i]))
+		getcontext().prec = 51
+		fl.append(Decimal(totalf[i]))
 
-	for i in fl:
-		print(i)
-
-
+	answer = str(sum(fl))
+	print(answer[:3] + answer[4:11])
 main()			
