@@ -30,7 +30,7 @@ def translate_tens(n):
 def translate_tens_digit(n):
 	t = int(n/10)
 	return {
-		0:'',
+		0:translate_ones(n%10),
 		1:translate_tens(n),
 		2:'twenty'+translate_ones(n%10),
 		3:'thirty'+translate_ones(n%10),
@@ -44,7 +44,10 @@ def translate_tens_digit(n):
 def translate_hund_digit(n):
 	h = int(n/100)
 	t = n%100
-	return ( translate_ones(h) + 'hundredand'+translate_tens_digit(t))
+	a = 'and'
+	if t == 0:
+		a = ''
+	return ( translate_ones(h) + 'hundred'+a+translate_tens_digit(t))
 
 def pick_number(n):
 	if n < 10:
@@ -64,5 +67,4 @@ def main():
 	print(sum([len(i) for i in l]))
 #	for w in l:
 #		print(w)
-
 main()
